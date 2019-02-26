@@ -1,52 +1,42 @@
-import React, { Component } from 'react';
-import axios from 'axios';
-import Movie from './movie';
-import MovieDetails from './movieDetails';
-import '../App.css';
+import React, { Component } from "react";
+import Movie from "./movie";
+import MovieDetails from "./movieDetails";
+import { fetchMovies } from "../../actions/resultActions";
+import { connect } from "react-redux";
 
+class Movies extends Component {
+  handleMovieActive(moveId) {
+    this.setState({ selectedMovie: moveId });
+  }
 
-export default class Movies extends Component {
-    state = {
-        movies: [],
-        selectedMovie: 0,
-        movieIndex: 0
-    } 
+  componentDidMount() {
+    const { fetchMovies } = this.props;
+    fetchMovies();
+  }
 
-    handleMovieActive(moveId) {                   
-        this.setState({ selectedMovie: moveId })
-    }
-
-    componentDidMount() {
-        axios.get('https://starwarstest.free.beeceptor.com/films').then(
-            response => {
-                this.setState({ movies: response.data.results })
-            });
-    }
-
-    render() {
-        if (this.state.movies === undefined) {
-            return (
-                <div>Loading...</div>
-            );
-        } else {
-            return (
-                <div className="ui container">
-                    <h1>Star Wars Movie</h1> 
-                    <div className="ui secondary pointing menu" >                             
-                        {this.state.movies.map(
-                            (movie, index) => 
-                            <Movie info={movie} 
-                                   key={movie.episode_id} 
-                                   current={this.state.selectedMovie}
-                                   click={() => this.handleMovieActive(movie.episode_id,index)}
-                                   />                                
-                            )}
-                    </div>
-                    <div>
-                        <MovieDetails info={this.state.movies[this.state.movieIndex]}/>
-                    </div>
-                </div>
-            )
-        }
-    }
+  render() {
+    const { movies } = this.props;
+    console.log(movies);
+    return (
+      <div className="ui container">
+        <h1>Star Wars Movie</h1>
+        <div className="ui cards">
+          {movies.map((movie, index) => (
+            <Movie info={movie} key={index} />
+          ))}
+        </div>
+      </div>
+    );
+  }
 }
+const mapStateToProps = state => ({
+  movies: state.movies
+});
+const mapDispatchToProps = dispatch => ({
+  fetchMovies: searchTerm => dispatch(fetchMovies(searchTerm))
+});
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Movies);

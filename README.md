@@ -1,6 +1,6 @@
 # Star Wars Movie
 
-## `Descrição`
+## Descrição
 
 Listagem de filmes da saga Star Wars
 
@@ -12,7 +12,7 @@ Para instalar as dependências necessárias (é necessário ter [Node](https://n
 
 Para executar o app no endereço http://localhost:3000.
 
-### `Decisões de projeto`
+### Decisões de projeto
 
 - Interface construída com [React](https://reactjs.org/) e [Semantic UI](https://react.semantic-ui.com/)
 - Chamadas de API realizadas com [Axios](https://github.com/axios/axios)

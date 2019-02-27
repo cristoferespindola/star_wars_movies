@@ -1,5 +1,6 @@
 import React from "react";
 import MovieDetails from "../MovieDetails/movieDetails";
+
 import { Divider, Header, Image, Grid, Container } from "semantic-ui-react";
 
 const Movie = props => {

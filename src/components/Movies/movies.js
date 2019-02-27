@@ -2,8 +2,9 @@ import React, { Component } from "react";
 import Movie from "../Movie/movie";
 import { fetchMovies } from "../../actions/movieActions";
 import { connect } from "react-redux";
-import { Segment, Image, Container } from "semantic-ui-react";
+
 import logo from "../../assets/img/starWars-logo.png";
+import { Segment, Image, Container } from "semantic-ui-react";
 import "../App.css";
 
 //Generate stars

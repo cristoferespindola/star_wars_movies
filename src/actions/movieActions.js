@@ -12,7 +12,7 @@ const fetchMoviesSucess = json => {
 const fetchMovies = () => {
   return dispatch => {
     axios
-      .get("https://starsagain.free.beeceptor.com/films")
+      .get("https://swapi.co/api/films/?format=json")
       .then(response => dispatch(fetchMoviesSucess(response.data)));
   };
 };

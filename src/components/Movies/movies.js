@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import Movie from "../Movie/movie";
+import Loading from "../Loading/loading";
 import { fetchMovies } from "../../actions/movieActions";
 import { connect } from "react-redux";
 
@@ -8,11 +9,9 @@ import { Segment, Image, Container } from "semantic-ui-react";
 import "../App.css";
 
 //Generate stars
-const numStars = 1000;
-
-for (let i = 0; i < numStars; i++) {
-  let star = document.createElement("div");
-  let xy = getRandomPosition();
+for (let i = 0; i < 1000; i++) {
+  const star = document.createElement("div");
+  const xy = getRandomPosition();
 
   star.className = "star";
   star.style.top = xy[0] + "px";
@@ -20,14 +19,17 @@ for (let i = 0; i < numStars; i++) {
 
   document.body.append(star);
 }
+
 function getRandomPosition() {
-  let y = window.innerWidth;
-  let x = window.innerHeight;
-  let randomX = Math.floor(Math.random() * x);
-  let randomY = Math.floor(Math.random() * y);
+  const y = window.innerWidth;
+  const x = window.innerHeight;
+
+  const randomX = Math.floor(Math.random() * x);
+  const randomY = Math.floor(Math.random() * y);
 
   return [randomX, randomY];
 }
+
 class Movies extends Component {
   componentDidMount() {
     const { fetchMovies } = this.props;
@@ -35,21 +37,28 @@ class Movies extends Component {
   }
 
   render() {
-    const { movies } = this.props;
-    return (
-      <Container className="master">
-        <Image src={logo} size="medium" wrapped />
-        <Segment>
-          {movies.map((movie, index) => (
-            <Movie info={movie} key={index} />
-          ))}
-        </Segment>
-      </Container>
-    );
+    const { movies, isLoading } = this.props;
+
+    if (isLoading) {
+      return <Loading />;
+    } else {
+      return (
+        <Container className="master">
+          <Image src={logo} size="medium" wrapped />
+          <Segment>
+            {movies.map((movie, index) => (
+              <Movie info={movie} key={index} />
+            ))}
+          </Segment>
+        </Container>
+      );
+    }
   }
 }
+
 const mapStateToProps = state => ({
-  movies: state.movies
+  movies: state.movies,
+  isLoading: state.isLoading
 });
 const mapDispatchToProps = dispatch => ({
   fetchMovies: () => dispatch(fetchMovies())

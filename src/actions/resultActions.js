@@ -1,16 +1,8 @@
-import {
-  FETCH_RESULT,
-  FETCH_RESULT_SUCCESS
-  // FETCH_RESULT_ERROR
+import {  
+  FETCH_RESULT_SUCCESS  
 } from "../constants/actionTypes";
 
 import axios from "axios";
-
-const fetchResult = searchTerm => {
-  return {
-    type: FETCH_RESULT
-  };
-};
 
 const fetchMoviesSucess = json => {
   return {
@@ -19,16 +11,8 @@ const fetchMoviesSucess = json => {
   };
 };
 
-// const fetchMoviesError = () => {
-//   return {
-//     type: FETCH_RESULT_ERROR,
-//     movies: []
-//   };
-// };
-
-const fetchMovies = searchTerm => {
-  return dispatch => {
-    dispatch(fetchResult(searchTerm));
+const fetchMovies = () => {
+  return dispatch => {    
     axios
       .get("https://cristofer-pipz.free.beeceptor.com/films")
       .then(response => dispatch(fetchMoviesSucess(response.data)));

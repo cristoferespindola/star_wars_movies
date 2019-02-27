@@ -1,8 +1,5 @@
-import {
-  FETCH_RESULT,
-  FETCH_RESULT_SUCCESS,
-  FETCH_RESULT_ERROR,
-  CLEAN_RESULT
+import {  
+  FETCH_RESULT_SUCCESS 
 } from "../constants/actionTypes";
 
 const initialState = {
@@ -10,17 +7,7 @@ const initialState = {
 };
 
 function resultsReducer(state = initialState, action) {
-  switch (action.type) {
-    case FETCH_RESULT:
-      return {
-        ...state,
-        movies: state.movies
-      };
-    // case FETCH_RESULT_ERROR:
-    //   return {
-    //     ...state,
-    //     movies: action.movies
-    //   };
+  switch (action.type) {    
     case FETCH_RESULT_SUCCESS:
       return {
         ...state,

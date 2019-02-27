@@ -49,7 +49,7 @@ const mapStateToProps = state => ({
   movies: state.movies
 });
 const mapDispatchToProps = dispatch => ({
-  fetchMovies: searchTerm => dispatch(fetchMovies(searchTerm))
+  fetchMovies: () => dispatch(fetchMovies())
 });
 
 export default connect(

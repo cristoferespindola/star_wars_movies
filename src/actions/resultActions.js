@@ -30,7 +30,7 @@ const fetchMovies = searchTerm => {
   return dispatch => {
     dispatch(fetchResult(searchTerm));
     axios
-      .get("https://seilaagora.free.beeceptor.com/films")
+      .get("https://cristofer-pipz.free.beeceptor.com/films")
       .then(response => dispatch(fetchMoviesSucess(response.data)));
   };
 };

@@ -1,0 +1,36 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto');
+
+.master {
+    margin: 0;
+    background-color: black;
+    padding: 20px 20px 20px 20px;
+    font-family: 'Roboto', sans-serif;
+  }
+  
+.star {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    background-color: white;
+}
+
+@media only screen and (max-width: 767px) {
+  .ui.large.header {
+    font-size: 2.1em !important;
+    padding-top: 10px;
+  }
+  .ui.small.header {
+    font-size: 1.8em !important;
+  }
+  .ui.tiny.header {
+    font-size: 1.8em !important;
+    padding-top: 20px;
+  }
+  .ui.list {
+    font-size: 1.5em !important;
+  }
+  .textCrawl {
+    font-size: 1.8em !important;
+    line-height: normal !important;
+  }
+}

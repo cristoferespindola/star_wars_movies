@@ -1,13 +1,30 @@
-import React, { Component } from "react";
-import Movie from "./movie";
-import MovieDetails from "./movieDetails";
-import { fetchMovies } from "../../actions/resultActions";
-import { connect } from "react-redux";
+import React, { Component } from 'react';
+import Movie from './Movie/movie';
+import { fetchMovies } from '../../actions/resultActions';
+import { connect } from 'react-redux';
+import { Segment, Image, Container } from 'semantic-ui-react';
+import logo from '../../assets/img/starWars-logo.png';
+import '../App.css';
 
-class Movies extends Component {
-  handleMovieActive(moveId) {
-    this.setState({ selectedMovie: moveId });
-  }
+//Generate stars
+const numStars = 1000;
+
+for (let i = 0; i < numStars; i++) {
+  let star = document.createElement("div");  
+  star.className = "star";
+  var xy = getRandomPosition();
+  star.style.top = xy[0] + 'px';
+  star.style.left = xy[1] + 'px';
+  document.body.append(star);
+}
+function getRandomPosition() {  
+  var y = window.innerWidth;
+  var x = window.innerHeight;
+  var randomX = Math.floor(Math.random()*x);
+  var randomY = Math.floor(Math.random()*y);
+  return [randomX,randomY];
+}
+class Movies extends Component {  
 
   componentDidMount() {
     const { fetchMovies } = this.props;
@@ -16,16 +33,15 @@ class Movies extends Component {
 
   render() {
     const { movies } = this.props;
-    console.log(movies);
     return (
-      <div className="ui container">
-        <h1>Star Wars Movie</h1>
-        <div className="ui cards">
-          {movies.map((movie, index) => (
-            <Movie info={movie} key={index} />
-          ))}
-        </div>
-      </div>
+      <Container className="master">
+        <Image src={ logo } size='medium' wrapped />        
+          <Segment>
+            {movies.map((movie, index) => (
+              <Movie info={movie} key={index} />
+            ))}         
+          </Segment>
+      </Container>
     );
   }
 }

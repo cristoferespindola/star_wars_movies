@@ -1,20 +1,18 @@
-import {  
-  FETCH_RESULT_SUCCESS  
-} from "../constants/actionTypes";
+import { FETCH_MOVIES_SUCCESS } from "../constants/actionTypes";
 
 import axios from "axios";
 
 const fetchMoviesSucess = json => {
   return {
-    type: FETCH_RESULT_SUCCESS,
+    type: FETCH_MOVIES_SUCCESS,
     movies: json.results
   };
 };
 
 const fetchMovies = () => {
-  return dispatch => {    
+  return dispatch => {
     axios
-      .get("https://cristofer-pipz.free.beeceptor.com/films")
+      .get("https://starsagain.free.beeceptor.com/films")
       .then(response => dispatch(fetchMoviesSucess(response.data)));
   };
 };
